@@ -70,3 +70,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 New Unity Project/.vsconfig
+New Unity Project/ProjectSettings/Packages/com.unity.probuilder/Settings.json
