@@ -19,7 +19,7 @@ public class FPSDisplay : MonoBehaviour
 
         fpsDisplay.text = "FPS | " + fps.ToString("00");
 
-        if (fps < 30)
+        if (fps <= 30)
         {
             fpsDisplay.color = critical;
         }
