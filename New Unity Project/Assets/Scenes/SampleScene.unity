@@ -8656,7 +8656,7 @@ MonoBehaviour:
   storedMoveSpeed: 10
   airSpeed: 2
   moveSpeed: 10
-  jumpMultiplier: 5
+  jumpMultiplier: 10
   groundMask:
     serializedVersion: 2
     m_Bits: 8
