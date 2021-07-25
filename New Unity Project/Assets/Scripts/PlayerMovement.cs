@@ -12,14 +12,15 @@ public class PlayerMovement : MonoBehaviour
     public float rbDrag = 5f;
     public float offGroundDrag = 1f;
     public float storedMoveSpeed = 10f;
-    public float airSpeed = 2f;
+    public float airSpeed = 1f;
     Rigidbody rb;
 
     //vars that change
     public float moveSpeed;
 
     //jumping variables
-    public float jumpMultiplier = 5f;
+    public float jumpMultiplier = 15f;
+
     //groundCheck vars
     public LayerMask groundMask;
     public float groundDistance = 0.4f;
