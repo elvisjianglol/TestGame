@@ -17,7 +17,7 @@ public class FPSDisplay : MonoBehaviour
     {
         fps = 1 / Time.unscaledDeltaTime;
 
-        fpsDisplay.text = "FPS | " + fps.ToString("00");
+        fpsDisplay.text = "FPS " + fps.ToString("00");
 
         if (fps <= 30)
         {

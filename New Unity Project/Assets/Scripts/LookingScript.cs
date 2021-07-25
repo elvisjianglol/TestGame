@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class LookingScript : MonoBehaviour
 {
-
+    [Range(1.4f, 10f)]
     [SerializeField] private float xSensitivity = 3f;
+
+    [Range(0.8f, 7f)]
     [SerializeField] private float ySensitivity = 2.5f;
 
     [SerializeField] private Transform player;
