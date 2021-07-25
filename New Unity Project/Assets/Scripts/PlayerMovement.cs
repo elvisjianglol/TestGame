@@ -8,23 +8,26 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
     float horizontalMovement;
     float verticalMovement;
-    public float movementMultiplier = 6f;
-    public float rbDrag = 5f;
-    public float offGroundDrag = 1f;
-    public float storedMoveSpeed = 10f;
-    public float airSpeed = 1f;
+
+    [SerializeField] private float movementMultiplier = 6f;
+    [SerializeField] private float rbDrag = 5f;
+    [SerializeField] private float offGroundDrag = 1f;
+
+    [SerializeField] private float storedMoveSpeed = 10f;
+    [SerializeField] private float airSpeed = 1f;
+
     Rigidbody rb;
 
     //vars that change
-    public float moveSpeed;
+    private float moveSpeed;
 
     //jumping variables
-    public float jumpMultiplier = 15f;
+    [SerializeField] private float jumpMultiplier = 15f;
 
     //groundCheck vars
-    public LayerMask groundMask;
-    public float groundDistance = 0.4f;
-    public Transform groundCheckObj;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float groundDistance = 0.4f;
+    [SerializeField] private Transform groundCheckObj;
     bool onGround;
 
 

@@ -8650,13 +8650,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8f6378fa0eac046bb007048d76036b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementMultiplier: 8
-  rbDrag: 8
+  movementMultiplier: 6
+  rbDrag: 5
   offGroundDrag: 1
   storedMoveSpeed: 10
-  airSpeed: 2
-  moveSpeed: 10
-  jumpMultiplier: 10
+  airSpeed: 1
+  jumpMultiplier: 15
   groundMask:
     serializedVersion: 2
     m_Bits: 8
