@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CollisionDeath : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private float restartDelay = 1f;
+
+
+    void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.collider.CompareTag("Player"))
+        {
+            Invoke("Restart", restartDelay);
+        }
+        else Destroy(collision.collider.gameObject, restartDelay);
     }
 
-    // Update is called once per frame
-    void Update()
+    void Restart()
     {
-        
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
 }

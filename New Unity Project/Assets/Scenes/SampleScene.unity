@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: c7d3a5566a5d94643afade57445583e8, type: 2}
   m_LightingSettings: {fileID: 1729449007}
 --- !u!196 &4
 NavMeshSettings:
@@ -6990,6 +6990,7 @@ GameObject:
   - component: {fileID: 1264285765}
   - component: {fileID: 1264285764}
   - component: {fileID: 1264285763}
+  - component: {fileID: 1264285766}
   m_Layer: 3
   m_Name: lava
   m_TagString: Untagged
@@ -7073,6 +7074,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264285761}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1264285766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264285761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab9bbe2a32695342bd7a581e7039fb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartDelay: 0.3
 --- !u!1 &1284233014
 GameObject:
   m_ObjectHideFlags: 0
@@ -8119,7 +8133,7 @@ GameObject:
   - component: {fileID: 1905993911}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
