@@ -211,7 +211,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
@@ -7006,8 +7006,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264285761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.03, y: 10.63, z: 9.94}
-  m_LocalScale: {x: 3.5733, y: 0.3079, z: 10.28}
+  m_LocalPosition: {x: -28.07, y: 10.63, z: 5.1}
+  m_LocalScale: {x: 6.078453, y: 0.3079, z: 24.80949}
   m_Children: []
   m_Father: {fileID: 632968344}
   m_RootOrder: 4
@@ -7778,7 +7778,7 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 2
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
