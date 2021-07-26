@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float storedMoveSpeed = 10f;
     [SerializeField] private float airSpeed = 1f;
 
+
     private float dashingCooldown;
     [SerializeField] private float dashingDelay = 1f;
     [SerializeField] private float dashDuration = 0.5f;
@@ -74,8 +75,10 @@ public class PlayerMovement : MonoBehaviour
 
         if(isDashing)
         {
+            // up the drag to make dashing stiffer 
             rb.drag = dashingDrag;
-
+            
+            // add a timer for the drag
             Invoke("DashReset", dashDuration);
         }
 
