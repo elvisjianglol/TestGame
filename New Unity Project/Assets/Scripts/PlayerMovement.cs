@@ -20,11 +20,13 @@ public class PlayerMovement : MonoBehaviour
     private float dashingCooldown;
     [SerializeField] private float dashingDelay = 3f;
     [SerializeField] private float dashDuration = 0.5f;
+
     private bool isDashing = false;
+    [HideInInspector] public bool canDash = false;
 
     [SerializeField] private float dashingSpeed = 6f;
     [SerializeField] private float dashingDrag = 5f;
-
+    
     [SerializeField] private ParticleSystem speedLines;
  
     Rigidbody rb;
@@ -66,14 +68,20 @@ public class PlayerMovement : MonoBehaviour
             PlayerJump();
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= dashingCooldown)
+        if (Time.time >= dashingCooldown)
         {
-            dashingCooldown = Time.time + dashingDelay;
+            canDash = true;
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                dashingCooldown = Time.time + dashingDelay;
 
-            isDashing = true;
+                isDashing = true;
 
-            rb.AddForce(moveDirection * dashingSpeed * 10, ForceMode.VelocityChange);
+                rb.AddForce(moveDirection * dashingSpeed * 10, ForceMode.VelocityChange);
+            }
         }
+        else canDash = false;
+
 
 
         if(isDashing)
