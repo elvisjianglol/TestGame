@@ -8655,10 +8655,10 @@ MonoBehaviour:
   offGroundDrag: 1
   storedMoveSpeed: 10
   airSpeed: 1
-  dashingDelay: 1
-  dashDuration: 0.5
-  dashingSpeed: 5
-  dashingDrag: 5
+  dashingDelay: 2
+  dashDuration: 0.37
+  dashingSpeed: 6
+  dashingDrag: 9
   jumpMultiplier: 15
   groundMask:
     serializedVersion: 2

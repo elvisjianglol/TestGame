@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     private float dashingCooldown;
-    [SerializeField] private float dashingDelay = 1f;
+    [SerializeField] private float dashingDelay = 3f;
     [SerializeField] private float dashDuration = 0.5f;
     private bool isDashing = false;
 
@@ -67,9 +67,9 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= dashingCooldown)
         {
             dashingCooldown = Time.time + dashingDelay;
-
-            rb.AddForce(moveDirection * dashingSpeed * 10, ForceMode.VelocityChange);
             isDashing = true;
+
+            rb.AddForce(moveDirection * dashingSpeed * 10, ForceMode.VelocityChange)
         }
 
 
