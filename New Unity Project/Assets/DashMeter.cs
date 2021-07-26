@@ -18,7 +18,7 @@ public class DashMeter : MonoBehaviour
     private Color usedArrow = new Color(1f, 1f, 1f ,0.6392f);
 
     private Color normalBG = new Color(0.7529f, 1f, 8935f, 1f);
-    private Color usedBG = new Color(0.7529f, 1f, 8935f, 0.85f);
+    private Color usedBG = new Color(0.7529f, 1f, 8935f, 0.6f);
  
    
 
