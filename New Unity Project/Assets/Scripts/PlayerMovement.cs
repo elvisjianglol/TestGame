@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
             dashingCooldown = Time.time + dashingDelay;
             isDashing = true;
 
-            rb.AddForce(moveDirection * dashingSpeed * 10, ForceMode.VelocityChange)
+            rb.AddForce(moveDirection * dashingSpeed * 10, ForceMode.VelocityChange);
         }
 
 
@@ -114,8 +114,6 @@ public class PlayerMovement : MonoBehaviour
         // No need for deltaTime
         MovePlayer();
     }
-
-
 
 
     void MovePlayer()
