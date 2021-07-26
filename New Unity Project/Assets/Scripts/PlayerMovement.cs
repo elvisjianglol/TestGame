@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingSpeed = 6f;
     [SerializeField] private float dashingDrag = 5f;
 
+    [SerializeField] private ParticleSystem speedLines;
+ 
     Rigidbody rb;
 
     //vars that change
@@ -67,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= dashingCooldown)
         {
             dashingCooldown = Time.time + dashingDelay;
+
             isDashing = true;
 
             rb.AddForce(moveDirection * dashingSpeed * 10, ForceMode.VelocityChange);
@@ -75,6 +78,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(isDashing)
         {
+            speedLines.Play();
+
             // up the drag to make dashing stiffer 
             rb.drag = dashingDrag;
             
@@ -140,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
 
     void DashReset()
     {
+        speedLines.Stop();
         isDashing = false;
     }
 }
