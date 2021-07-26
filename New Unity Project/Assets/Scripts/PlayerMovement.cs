@@ -10,11 +10,19 @@ public class PlayerMovement : MonoBehaviour
     float verticalMovement;
 
     [SerializeField] private float movementMultiplier = 6f;
-    [SerializeField] private float rbDrag = 5f;
+    [SerializeField] private float rbDrag = 7f;
     [SerializeField] private float offGroundDrag = 1f;
 
     [SerializeField] private float storedMoveSpeed = 10f;
     [SerializeField] private float airSpeed = 1f;
+
+    private float dashingCooldown;
+    [SerializeField] private float dashingDelay = 1f;
+    [SerializeField] private float dashDuration = 0.5f;
+    private bool isDashing = false;
+
+    [SerializeField] private float dashingSpeed = 6f;
+    [SerializeField] private float dashingDrag = 5f;
 
     Rigidbody rb;
 
@@ -54,7 +62,24 @@ public class PlayerMovement : MonoBehaviour
         {
             PlayerJump();
         }
-        if(!onGround)
+
+        if(Input.GetKeyDown(KeyCode.LeftShift) && Time.time >= dashingCooldown)
+        {
+            dashingCooldown = Time.time + dashingDelay;
+
+            rb.AddForce(moveDirection * dashingSpeed * 10, ForceMode.VelocityChange);
+            isDashing = true;
+        }
+
+
+        if(isDashing)
+        {
+            rb.drag = dashingDrag;
+
+            Invoke("DashReset", dashDuration);
+        }
+
+        else if(!onGround)
         {
             rb.drag = offGroundDrag;
             moveSpeed = airSpeed;
@@ -112,7 +137,10 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(transform.up * jumpMultiplier, ForceMode.VelocityChange);
     }
 
-
-
-
+    void DashReset()
+    {
+        isDashing = false;
+    }
 }
+
+

@@ -8651,10 +8651,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementMultiplier: 6
-  rbDrag: 5
+  rbDrag: 7
   offGroundDrag: 1
   storedMoveSpeed: 10
   airSpeed: 1
+  dashingDelay: 1
+  dashDuration: 0.5
+  dashingSpeed: 5
+  dashingDrag: 5
   jumpMultiplier: 15
   groundMask:
     serializedVersion: 2

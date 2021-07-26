@@ -7,7 +7,7 @@ public class FPSDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI fpsDisplay;
 
-    private Color critical = new Color(1f, 0.3632f, 0.3349f, 0f);
+    private Color critical = new Color(1f, 0.3632f, 0.3349f, 0.8f);
     private float fps;
 
 
