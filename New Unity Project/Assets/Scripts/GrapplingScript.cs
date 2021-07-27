@@ -17,7 +17,7 @@ public class GrapplingScript : MonoBehaviour
     public float force = 5f;
     public float massScaleValue = 5f;
     public float damperValue = 6f;
-    public float springValue = 20f;
+    public float springValue = 10f;
 
     [HideInInspector] public bool grappling = false;
     [SerializeField] private float forceRate = 0.1f;
@@ -59,19 +59,17 @@ public class GrapplingScript : MonoBehaviour
             grappling = true;
             rb.useGravity = false;
 
+
             grapplePoint = hit.point;//point in space where raycast hit
           
 
             lr.positionCount = 2;
-
-            //keep pulling player to grapplePoint
-            
-             StartCoroutine(PullPlayer());
-            
-
         }
     }
-
+    private void FixedUpdate()
+    {
+        StartCoroutine(PullPlayer());
+    }
     void StopGrapple()
     {
         grappling = false;
