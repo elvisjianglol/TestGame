@@ -28,6 +28,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingDrag = 5f;
     
     [SerializeField] private ParticleSystem speedLines;
+
+    [SerializeField] private GrapplingScript grapplingScript;
+    [SerializeField] private float grappleDrag = 1f;
  
     Rigidbody rb;
 
@@ -63,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         ControlDrag();
 
-        if (Input.GetButtonDown("Jump") && onGround)
+        if (Input.GetButtonDown("Jump") && onGround && !grapplingScript.grappling)
         {
             PlayerJump();
         }
@@ -71,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         if (Time.time >= dashingCooldown)
         {
             canDash = true;
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !grapplingScript.grappling)
             {
                 dashingCooldown = Time.time + dashingDelay;
 
@@ -93,6 +96,11 @@ public class PlayerMovement : MonoBehaviour
             
             // add a timer for the drag
             Invoke("DashReset", dashDuration);
+        }
+
+        else if(grapplingScript.grappling)
+        {
+            rb.drag = grappleDrag;
         }
 
         else if(!onGround)
@@ -132,7 +140,11 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         // normalize
-        rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
+        if(!grapplingScript.grappling)
+        {
+            rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
+        }
+      
     }
 
 

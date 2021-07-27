@@ -18,6 +18,9 @@ public class GrapplingScript : MonoBehaviour
     public float massScaleValue = 5f;
     public float damperValue = 6f;
     public float springValue = 20f;
+
+    [HideInInspector] public bool grappling = false;
+    [SerializeField] private float forceRate = 0.1f;
     
     
     private void Awake()
@@ -36,6 +39,7 @@ public class GrapplingScript : MonoBehaviour
 
         else if(Input.GetButtonUp("Fire2"))
         {
+            grappling = false;
             StopGrapple();
         }
 
@@ -52,6 +56,8 @@ public class GrapplingScript : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(origin:cam.position, direction:cam.forward,out hit, maxDistance))
         {
+            grappling = true;
+
             grapplePoint = hit.point;//point in space where raycast hit
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
@@ -69,9 +75,9 @@ public class GrapplingScript : MonoBehaviour
             lr.positionCount = 2;
 
             //keep pulling player to grapplePoint
-            StartCoroutine(PullPlayer());
-           
-
+            
+             StartCoroutine(PullPlayer());
+            
 
         }
     }
@@ -100,8 +106,15 @@ public class GrapplingScript : MonoBehaviour
 
     IEnumerator PullPlayer()
     {
-        rb.AddForce((grapplePoint - player.position).normalized * force);
-        yield return new WaitForSeconds(5f);
+        while(grappling)
+        {
+            rb.AddForce((grapplePoint - player.position).normalized * force);
+
+            yield return new WaitForSeconds(forceRate);
+        }
+           
+        
+      
     }
 
 
