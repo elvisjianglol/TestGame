@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         ControlDrag();
 
-        if (Input.GetButtonDown("Jump") && onGround && !grapplingScript.grappling)
+        if (Input.GetButtonDown("Jump") && onGround && !grapplingScript.isGrappling)
         {
             PlayerJump();
         }
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         if (Time.time >= dashingCooldown)
         {
             canDash = true;
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !grapplingScript.grappling)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !grapplingScript.isGrappling)
             {
                 dashingCooldown = Time.time + dashingDelay;
 
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             Invoke("DashReset", dashDuration);
         }
 
-        else if(grapplingScript.grappling)
+        else if(grapplingScript.isGrappling)
         {
             rb.drag = grappleDrag;
         }
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         // normalize
-        if(!grapplingScript.grappling)
+        if(!grapplingScript.isGrappling)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * movementMultiplier, ForceMode.Acceleration);
         }

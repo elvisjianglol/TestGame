@@ -5,7 +5,6 @@ using UnityEngine;
 public class GrapplingScript : MonoBehaviour
 {
     private LineRenderer lr;
-    private SpringJoint joint;
     private Vector3 grapplePoint;
     public LayerMask grappleableObj;
     public Transform gunTip, cam, player;
@@ -14,12 +13,9 @@ public class GrapplingScript : MonoBehaviour
     private Rigidbody rb;
 
     //adjustable vars
-    public float force = 5f;
-    public float massScaleValue = 5f;
-    public float damperValue = 6f;
-    public float springValue = 20f;
+    [SerializeField] private float force = 5f;
 
-    [HideInInspector] public bool grappling = false;
+    [HideInInspector] public bool isGrappling = false;
     [SerializeField] private float forceRate = 0.1f;
     
     
@@ -54,9 +50,9 @@ public class GrapplingScript : MonoBehaviour
     void StartGrapple()
     {
         RaycastHit hit;
-        if(Physics.Raycast(origin:cam.position, direction:cam.forward,out hit, maxDistance))
+        if(Physics.Raycast(origin:cam.position, direction:cam.forward, out hit, maxDistance))
         {
-            grappling = true;
+            isGrappling = true;
             rb.useGravity = false;
 
             grapplePoint = hit.point;//point in space where raycast hit
@@ -74,30 +70,25 @@ public class GrapplingScript : MonoBehaviour
 
     void StopGrapple()
     {
-        grappling = false;
+        isGrappling = false;
         rb.useGravity = true;
 
         lr.positionCount = 0;
-        Destroy(joint);
     }
 
     void DrawRope()
     {
         //dont draw if not grappling
-        if (!grappling) return;
+        if (!isGrappling) return;
 
         lr.SetPosition(index: 0, position: gunTip.position);
         lr.SetPosition(index: 1, grapplePoint);
     }
 
-    public bool isGrappling()
-    {
-        return joint != null;
-    }
 
     IEnumerator PullPlayer()
     {
-        while(grappling)
+        while(isGrappling)
         {
             rb.AddForce((grapplePoint - player.position).normalized * force * 10);
 
