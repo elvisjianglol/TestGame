@@ -89,7 +89,7 @@ public class GrapplingScript : MonoBehaviour
     {
         while(isGrappling)
         {
-            rb.AddForce((grapplePoint - player.position).normalized * force * 10);
+            rb.AddForce((grapplePoint - player.position).normalized * force);
 
 
             yield return new WaitForSeconds(forceRate);
