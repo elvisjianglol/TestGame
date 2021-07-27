@@ -11,7 +11,7 @@ public class GrapplingScript : MonoBehaviour
     public Transform gunTip, cam, player;
     public float maxDistance = 30f;
     
-    public Rigidbody rb;
+    private Rigidbody rb;
 
     //adjustable vars
     public float force = 5f;
@@ -39,7 +39,7 @@ public class GrapplingScript : MonoBehaviour
 
         else if(Input.GetButtonUp("Fire2"))
         {
-            grappling = false;
+
             StopGrapple();
         }
 
@@ -57,20 +57,10 @@ public class GrapplingScript : MonoBehaviour
         if(Physics.Raycast(origin:cam.position, direction:cam.forward,out hit, maxDistance))
         {
             grappling = true;
+            rb.useGravity = false;
 
             grapplePoint = hit.point;//point in space where raycast hit
-            joint = player.gameObject.AddComponent<SpringJoint>();
-            joint.autoConfigureConnectedAnchor = false;
-            joint.connectedAnchor = grapplePoint;
-
-            float distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
-            joint.maxDistance = distanceFromPoint * 0.8f;
-            joint.minDistance = distanceFromPoint * 0.2f;
-
-            //adjustable
-            joint.spring = springValue;
-            joint.damper = damperValue;
-            joint.massScale = massScaleValue;
+          
 
             lr.positionCount = 2;
 
@@ -84,8 +74,9 @@ public class GrapplingScript : MonoBehaviour
 
     void StopGrapple()
     {
-        
-       
+        grappling = false;
+        rb.useGravity = true;
+
         lr.positionCount = 0;
         Destroy(joint);
     }
@@ -93,7 +84,7 @@ public class GrapplingScript : MonoBehaviour
     void DrawRope()
     {
         //dont draw if not grappling
-        if (!joint) return;
+        if (!grappling) return;
 
         lr.SetPosition(index: 0, position: gunTip.position);
         lr.SetPosition(index: 1, grapplePoint);
@@ -108,7 +99,8 @@ public class GrapplingScript : MonoBehaviour
     {
         while(grappling)
         {
-            rb.AddForce((grapplePoint - player.position).normalized * force);
+            rb.AddForce((grapplePoint - player.position).normalized * force * 10);
+
 
             yield return new WaitForSeconds(forceRate);
         }

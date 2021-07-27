@@ -43338,13 +43338,12 @@ MonoBehaviour:
   cam: {fileID: 1819671513}
   player: {fileID: 1905993910}
   maxDistance: 30
-  rb: {fileID: 0}
-  force: 5
+  force: 4
   massScaleValue: 5
   damperValue: 6
   springValue: 20
   grappling: 0
-  forceRate: 0.1
+  forceRate: 0.01
 --- !u!1 &1727049924
 GameObject:
   m_ObjectHideFlags: 0
@@ -44000,7 +43999,7 @@ MonoBehaviour:
   dashingDrag: 9
   speedLines: {fileID: 1469997385}
   grapplingScript: {fileID: 1685077539}
-  grappleDrag: 1
+  grappleDrag: 2
   jumpMultiplier: 15
   groundMask:
     serializedVersion: 2
