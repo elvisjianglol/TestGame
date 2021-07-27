@@ -18,6 +18,10 @@ public class GrapplingScript : MonoBehaviour
 
     [HideInInspector] public bool isGrappling = false;
     [SerializeField] private float forceRate = 0.1f;
+
+    [SerializeField] private float grappleRotSpeed = 5f;
+    private Quaternion rotation;
+
     
     
     private void Awake()
@@ -28,7 +32,13 @@ public class GrapplingScript : MonoBehaviour
 
     private void Update()
     {
-        
+        if(!isGrappling)
+        {
+
+            rotation = transform.parent.rotation;
+        }
+        else rotation = Quaternion.LookRotation(grapplePoint - transform.position);
+
         if (Input.GetButtonDown("Fire2"))
         {
             StartGrapple();
@@ -40,7 +50,7 @@ public class GrapplingScript : MonoBehaviour
             StopGrapple();
         }
 
- 
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, grappleRotSpeed);
     }
 
     private void LateUpdate()
@@ -57,20 +67,28 @@ public class GrapplingScript : MonoBehaviour
             rb.useGravity = false;
 
 
+
+
             grapplePoint = hit.point;//point in space where raycast hit
           
 
             lr.positionCount = 2;
         }
     }
+
+    
+
     private void FixedUpdate()
     {
         StartCoroutine(PullPlayer());
     }
+
+
     void StopGrapple()
     {
         isGrappling = false;
         rb.useGravity = true;
+
 
         lr.positionCount = 0;
     }
