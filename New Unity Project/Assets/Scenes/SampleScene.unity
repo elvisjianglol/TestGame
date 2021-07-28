@@ -43859,8 +43859,8 @@ MonoBehaviour:
   cam: {fileID: 1819671513}
   playerMovement: {fileID: 1905993911}
   normalFOV: 60
-  dashFOV: 55
-  fovSpeed: 5
+  dashFOV: 50
+  fovSpeed: 3
 --- !u!1 &1905993905
 GameObject:
   m_ObjectHideFlags: 0
