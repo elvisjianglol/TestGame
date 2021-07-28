@@ -14,13 +14,22 @@ public class LookingScript : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform cam;
 
+    private Camera fpsCAM;
+    [SerializeField] private PlayerMovement playerMovement;
+
+    [SerializeField] private float normalFOV = 60f;
+    [SerializeField] private float dashFOV = 45f;
+    [SerializeField] private float fovSpeed = 5f;
+
+    private float currentFOV;
+
     private float playerRotation;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
+        fpsCAM = GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -36,5 +45,18 @@ public class LookingScript : MonoBehaviour
 
         player.Rotate(Vector3.up, x);
 
+        FOVControl();
+    }
+
+    void FOVControl()
+    {
+
+        fpsCAM.fieldOfView = Mathf.Lerp(fpsCAM.fieldOfView, currentFOV, Time.deltaTime * fovSpeed);
+
+        if (playerMovement.isDashing)
+        {
+            currentFOV = dashFOV;
+        }
+        else currentFOV = normalFOV;
     }
 }

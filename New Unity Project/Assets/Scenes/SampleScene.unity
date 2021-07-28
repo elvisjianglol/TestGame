@@ -7388,7 +7388,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33204
+  m_Name: pb_Mesh16540
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -43857,6 +43857,10 @@ MonoBehaviour:
   ySensitivity: 2.5
   player: {fileID: 1905993910}
   cam: {fileID: 1819671513}
+  playerMovement: {fileID: 1905993911}
+  normalFOV: 60
+  dashFOV: 55
+  fovSpeed: 5
 --- !u!1 &1905993905
 GameObject:
   m_ObjectHideFlags: 0
@@ -43992,6 +43996,7 @@ MonoBehaviour:
   airSpeed: 1
   dashingDelay: 2
   dashDuration: 0.37
+  isDashing: 0
   canDash: 0
   dashingSpeed: 6
   dashingDrag: 9

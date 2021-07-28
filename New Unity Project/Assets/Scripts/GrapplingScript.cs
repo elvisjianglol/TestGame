@@ -50,7 +50,7 @@ public class GrapplingScript : MonoBehaviour
             StopGrapple();
         }
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, grappleRotSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * grappleRotSpeed);
     }
 
     private void LateUpdate()

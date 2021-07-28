@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingDelay = 3f;
     [SerializeField] private float dashDuration = 0.5f;
 
-    private bool isDashing = false;
+    [HideInInspector] public bool isDashing = false;
     [HideInInspector] public bool canDash = false;
 
     [SerializeField] private float dashingSpeed = 6f;
