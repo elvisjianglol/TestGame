@@ -51935,7 +51935,7 @@ MonoBehaviour:
   dashDuration: 0.37
   isDashing: 0
   canDash: 0
-  dashingSpeed: 8
+  dashingSpeed: 10
   dashingDrag: 9
   speedLines: {fileID: 1469997385}
   grapplingScript: {fileID: 1685077539}
