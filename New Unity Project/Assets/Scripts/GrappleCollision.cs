@@ -17,13 +17,14 @@ public class GrappleCollision : MonoBehaviour
         }
     }
     
-
+    // runs automatically
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.collider.gameObject.layer);//for testing purposes
+        Debug.Log(collision.collider.gameObject.layer); //for testing purposes
         if(collision.collider.gameObject.layer == 3 && rb != null)
         {
-            rb.isKinematic = true;// disable physics for this object
+            rb.isKinematic = true; // disable physics for this object
+            transform.parent = collision.collider.transform; // set this transform to the object that of the collider
         }
     }
 }
