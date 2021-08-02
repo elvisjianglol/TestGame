@@ -15,6 +15,8 @@ public class GunScript : MonoBehaviour
     [SerializeField] private float bulletLifeTime = 8f;
     [SerializeField] private float fireRate = 10f;
 
+    public float damage = 5f;
+
     private float shootDelay;
 
 

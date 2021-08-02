@@ -63,6 +63,7 @@ public class GrapplingScript : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(origin:cam.position, direction:cam.forward, out hit, maxDistance))
         {
+           
             isGrappling = true;
             rb.useGravity = false;
 
