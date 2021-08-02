@@ -10,9 +10,9 @@ public class GunScript : MonoBehaviour
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform shootPoint;
 
-    [SerializeField] private Rigidbody rb;
+    private Rigidbody rb;
 
-    [SerializeField] private float range = 100f;
+    [SerializeField] private float bulletLifeTime = 8f;
     [SerializeField] private float fireRate = 10f;
 
     private float shootDelay;
@@ -41,19 +41,16 @@ public class GunScript : MonoBehaviour
         GameObject B = Instantiate(bullet, shootPoint.transform.position, cam.transform.rotation);
         rb = B.GetComponent<Rigidbody>();
 
+        Destroy(B, bulletLifeTime);
 
 
 
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit))
         {
             hitPoint = hit.point;
 
             rb.AddForce((hitPoint - shootPoint.transform.position).normalized * bulletSpeed, ForceMode.VelocityChange);
         }
-        else rb.AddForce(cam.transform.forward * bulletSpeed, ForceMode.VelocityChange);
-
-
-
 
 
 

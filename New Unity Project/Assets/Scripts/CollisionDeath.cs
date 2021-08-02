@@ -9,13 +9,13 @@ public class CollisionDeath : MonoBehaviour
     [SerializeField] private float restartDelay = 1f;
 
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
-        if (collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             Invoke("Restart", restartDelay);
         }
-        else Destroy(collision.collider.gameObject, restartDelay);
+        else Destroy(collision.gameObject, restartDelay);
     }
 
     void Restart()
