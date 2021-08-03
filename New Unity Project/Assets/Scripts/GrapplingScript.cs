@@ -32,12 +32,17 @@ public class GrapplingScript : MonoBehaviour
 
     private void Update()
     {
-        if(!isGrappling)
+        if (!isGrappling)
         {
-
             rotation = transform.parent.rotation;
         }
-        else rotation = Quaternion.LookRotation(grapplePoint - transform.position);
+        else
+        {
+            rb.useGravity = false;
+            rotation = Quaternion.LookRotation(grapplePoint - transform.position);
+        }
+         
+        
 
         if (Input.GetButtonDown("Fire2"))
         {
@@ -63,12 +68,8 @@ public class GrapplingScript : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(origin:cam.position, direction:cam.forward, out hit, maxDistance))
         {
-           
+
             isGrappling = true;
-            rb.useGravity = false;
-
-
-
 
             grapplePoint = hit.point;//point in space where raycast hit
           
@@ -89,7 +90,6 @@ public class GrapplingScript : MonoBehaviour
     {
         isGrappling = false;
         rb.useGravity = true;
-
 
         lr.positionCount = 0;
     }

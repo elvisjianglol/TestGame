@@ -79,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
                 dashingCooldown = Time.time + dashingDelay;
 
                 isDashing = true;
+                // make dashing cancel out y velocity
+                rb.useGravity = false;
 
                 rb.AddForce(moveDirection * dashingSpeed * 10, ForceMode.VelocityChange);
             }
@@ -87,33 +89,6 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if(isDashing)
-        {
-            speedLines.Play();
-
-            // up the drag to make dashing stiffer 
-            rb.drag = dashingDrag;
-            
-            // add a timer for the drag
-            Invoke("DashReset", dashDuration);
-        }
-
-        else if(grapplingScript.isGrappling)
-        {
-            rb.drag = grappleDrag;
-        }
-
-        else if(!onGround)
-        {
-            rb.drag = offGroundDrag;
-            moveSpeed = airSpeed;
-            
-        }
-
-        else
-        {
-            moveSpeed = storedMoveSpeed;
-        }
     }
 
 
@@ -148,13 +123,40 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-
-
     void ControlDrag()
     {
-        rb.drag = rbDrag;
-    }
 
+        if (isDashing)
+        {
+            speedLines.Play();
+
+            // up the drag to make dashing stiffer 
+            rb.drag = dashingDrag;
+     
+
+            // add a timer for the drag
+            Invoke("DashReset", dashDuration);
+        }
+
+        else if (grapplingScript.isGrappling)
+        {
+            rb.drag = grappleDrag;
+        }
+
+        else if (!onGround)
+        {
+            rb.drag = offGroundDrag;
+            moveSpeed = airSpeed;
+
+        }
+
+        else
+        {
+            rb.drag = rbDrag;
+            moveSpeed = storedMoveSpeed;
+        }
+
+    }
 
 
 
@@ -167,6 +169,12 @@ public class PlayerMovement : MonoBehaviour
     {
         speedLines.Stop();
         isDashing = false;
+
+        if(!grapplingScript.isGrappling)
+        {
+            rb.useGravity = true;
+        }   
+     
     }
 }
 
